@@ -1,0 +1,124 @@
+
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  border-inline: 1px solid var(--border);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+
+code,
+.counter {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+/* ==========================================================================
+   1. GALANO GROTESQUE (Pesos: 400, 500, 600)
+   ========================================================================== */
+@font-face {
+  font-family: 'Galano Grotesque';
+  src: url('./assets/fonts/galanoGrotesque/GalanoGrotesqueRegular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Galano Grotesque';
+  src: url('./assets/fonts/galanoGrotesque/GalanoGrotesqueMedium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Galano Grotesque';
+  src: url('./assets/fonts/galanoGrotesque/GalanoGrotesqueSemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Galano Grotesque';
+  src: url('./assets/fonts/galanoGrotesque/GalanoGrotesqueBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Galano Grotesque';
+  src: url('./assets/fonts/galanoGrotesque/GalanoGrotesqueMediumItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   2. PALATINO LINOTYPE (Pesos: 400, 600, 700 + Italic)
+   ========================================================================== */
+@font-face {
+  font-family: 'Palatino Linotype';
+  src: url('./assets/fonts/palatinoLinotype/palatinolinotype_roman.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Palatino Linotype';
+  src: url('./assets/fonts/palatinoLinotype/palatinolinotype_italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Palatino Linotype';
+  src: url('./assets/fonts/palatinoLinotype/palatinolinotype_bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Palatino Linotype';
+  src:  url('./assets/fonts/palatinoLinotype/palatinolinotype_bolditalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Palatino Linotype';
+  src: url('./assets/fonts/palatinoLinotype/palatinolinotype_bold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Palatino Linotype';
+  src:  url('./assets/fonts/palatinoLinotype/palatinolinotype_bolditalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
