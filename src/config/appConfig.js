@@ -29,7 +29,8 @@ export const appConfig = {
       text2:"#536568", //grey
       contrastText:"#ffffff",
       contrastPrimary:"#006969",
-      contrastSecondary:"#C4E9E2"
+      contrastSecondary:"#C4E9E2",
+      constratCaptions:"#0a192f"
     },
     /*POR AHORA NO LOS UTILIZAMOS*/
     dark: {
@@ -41,7 +42,8 @@ export const appConfig = {
       text2:"#536568", //grey
       contrastText:"#ffffff",
       contrastPrimary:"#006969",
-      contrastSecondary:"#BBCFCB"
+      contrastSecondary:"#BBCFCB",
+      constratCaptions:"#0a192f"
     },
   },
 };

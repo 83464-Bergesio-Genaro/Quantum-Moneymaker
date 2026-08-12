@@ -374,7 +374,7 @@ function MobileAreasCards() {
 
   return (
     <Grid size={{ xs: 12 }}>
-      <Grid container spacing={2} sx={{display:"flex"}}>
+      <Grid container spacing={2}>
         {areas.map((item) => {
           const isSelected = selectedArea === item.text;
 
