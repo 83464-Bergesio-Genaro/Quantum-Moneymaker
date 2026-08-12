@@ -46,7 +46,7 @@ const areas = [
     description:
       "Diseño y tratamiento impositivo de fideicomisos y estructuras fiduciarias.",
     orbit: "inner",
-    top: "1%",
+    top: "4%",
     left: "none",
     right: "34%",
     bottom:"none",
@@ -75,7 +75,7 @@ export default function MainHero(){
         display: "flex",
         alignItems: "center",
         position: "relative",
-        py: { xs: 4,sm: 4, md: 20},
+        py: { xs: 4,xl:16},
         }}
         >
         {/*Una mancha random que le gusto al chat, lo reemplazaria por los fondos de lineas*/}
@@ -103,17 +103,17 @@ export default function MainHero(){
         >
             <Grid
                 container
-                spacing={{ xs: 6, md: 4 }}
+                spacing={{ xs: 6, sm: 4 }}
                 alignItems="stretch"
                 sx={{
                     minHeight: {
-                    sm: 680,
+                    sm: "auto",
                     md: "auto",
                     },
                 }}
             >
 
-            <Grid container size={{ xs: 12, md: 6 }} spacing={1}>
+            <Grid container size={{ xs: 12,sm:6 }} spacing={1}>
               <Grid size={{ xs: 12 }} >
                 <Typography
                   sx={{
@@ -142,28 +142,62 @@ export default function MainHero(){
                 </Typography>                
               </Grid>
               <Grid size={{ xs: 12 }}>
-                <Typography
-                  variant="h6"
-                >
-                  Orden, proyección y estrategia para empresas que <i>no paran de soñar.</i>
-                </Typography>                
+                {isMobile && (
+                  <Typography
+                    variant="h6"
+                  >
+                    Orden, proyección y estrategia para empresas <i>que no paran de soñar.</i>
+                  </Typography>
+                )}
+                 {!isMobile && (
+                  <>
+                    <Typography
+                      variant="h6"
+                    >
+                      Orden, proyección y estrategia para empresas
+                    </Typography>
+                    <Typography
+                      variant="h5"
+                      sx={{letterSpacing: "-0.055em",}}
+                      >
+                      <i>que no paran de soñar.</i>
+                    </Typography>
+                  </>
+                 )}
+
               </Grid>
               <Grid size={{ xs: 12 }}>
+                {!isMobile &&(
+                  <Typography
+                  variant="body1"
+                  sx={{
+                    color: "var(--text2)",
+                    mb:{xs:1,xl:4},
+                  }}
+                  >
+                    Brindamos servicios a empresas que buscan
+                    ordenar su estructura proyectando su crecimiento mediante
+                    decisiones que consideran las dimensiones económicas, políticas y
+                    regulatorias.
+                  </Typography>
+                )}
+                {/*isMobile &&(
                   <Typography
                   variant="body2"
                   sx={{
                     color: "var(--text2)",
                     mb:{xs:1,md: 4},
                   }}
-                >
-                  Brindamos servicios a empresas que buscan
-                  ordenar su estructura proyectando su crecimiento mediante
-                  decisiones que consideran las dimensiones económicas, políticas y
-                  regulatorias.
-                </Typography>
+                  >
+                    Brindamos servicios a empresas que buscan
+                    ordenar su estructura proyectando su crecimiento mediante
+                    decisiones que consideran las dimensiones económicas, políticas y
+                    regulatorias.
+                  </Typography>
+                )*/}
               </Grid>
               {isMobile && (<MobileAreasCards/>)}
-              <Grid size={{ xs: 12,md:6 }} >
+              <Grid size={{ xs: 12,sm:6  }} >
                 <Button
                   variant="contained"
                   size="large"
@@ -171,8 +205,10 @@ export default function MainHero(){
                   sx={{
                     px: 4,
                     py: 1.5,
+                    my:1,
                     width:"100%",
                     borderRadius: "30px",
+                    fontSize:{xs:"0.6rem",sm:"0.65rem",xl:"0.875rem"},
                     backgroundColor: "var(--primary)",
                     fontWeight: 700,
                     "&:hover": {
@@ -183,19 +219,19 @@ export default function MainHero(){
                   Quiero mi diagnóstico
                 </Button>
               </Grid>
-              <Grid size={{ xs: 12,md:6 }}>
+              <Grid size={{ xs: 12,sm:6 }}>
                 <Button
                   variant="outlined"
                   size="large"
                   sx={{
                     px: 3.5,
                     py: 1.5,
+                    my: 1,
                     width:"100%",
+                    fontSize:{xs:"0.6rem",sm:"0.65rem",xl:"0.875rem"},
                     borderRadius: "30px",
                     borderColor: "var(--primary)",
                     color: "var(--primary)",
-                    fontWeight: 600,
-
                     "&:hover": {
                       borderColor: "var(--text)",
                       backgroundColor: "var(--contrastSecondary)",
@@ -277,13 +313,15 @@ function OrbitalDiagram(){
                 right: item.right,
                 bottom: item.bottom,
                 width: {
-                    sm: 105,
-                    md: 125,
+                    sm: 85,
+                    md: 100,
+                    xl:125
                 },
 
                 height: {
-                    sm: 105,
-                    md: 125,
+                    sm: 85,
+                    md: 100,
+                    xl:125
                 },
                 marginLeft: "-52px",
                 marginTop: "-52px",
@@ -342,14 +380,12 @@ function OrbitalDiagram(){
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 200,
-            height: 200,
+            width: {sm:120,xl:200},
+            height: {sm:120,xl:200},
             borderRadius: "50%",
-
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-
             boxShadow:
                 "0 25px 90px rgba(0,128,129,0.45)",
 
@@ -374,7 +410,7 @@ function MobileAreasCards() {
 
   return (
     <Grid size={{ xs: 12 }}>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{p:2}}>
         {areas.map((item) => {
           const isSelected = selectedArea === item.text;
 
@@ -393,11 +429,8 @@ function MobileAreasCards() {
                 sx={{
                   width: "100%",
                   minHeight: 150,
-
-                  p: 2.5,
-
+                  p: 2,
                   borderRadius: 3,
-
                   border: isSelected
                     ? "1px solid var(--primary)"
                     : "1px solid var(--primary)",
@@ -418,18 +451,13 @@ function MobileAreasCards() {
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
-
                   gap: 1,
-
                   cursor: "pointer",
-
                   transition:
                     "all 0.3s ease",
-
                   "&:active": {
                     transform: "scale(0.97)",
                   },
-
                   "&:focus-visible": {
                     outline:
                       "3px solid var(--captions)",
@@ -438,34 +466,38 @@ function MobileAreasCards() {
                 }}
               >
                 {/* ICONO */}
+                {!isSelected && (
+                  <>
+                    <Box
+                      sx={{
+                        color: isSelected
+                          ? "var(--contrastText)"
+                          : "var(--captions)",
 
-                <Box
-                  sx={{
-                    color: isSelected
-                      ? "var(--contrastText)"
-                      : "var(--captions)",
+                        transition:
+                          "color 0.3s ease",
+                      }}
+                    >
+                      {item.icon}
+                    </Box>
 
-                    transition:
-                      "color 0.3s ease",
-                  }}
-                >
-                  {item.icon}
-                </Box>
+                    {/* TÍTULO */}
 
-                {/* TÍTULO */}
-
-                <Typography
-                  component="span"
-                  sx={{
-                    fontSize: "0.7rem",
-                    fontWeight: 800,
-                    letterSpacing: "0.08em",
-                    color: "inherit",
-                    textAlign: "center",
-                  }}
-                >
-                  {item.text}
-                </Typography>
+                    <Typography
+                      component="span"
+                      sx={{
+                        fontSize: "0.8rem",
+                        fontWeight: 600,
+                        letterSpacing: "0.08em",
+                        color: "inherit",
+                        textAlign: "center",
+                      }}
+                    >
+                      {item.text}
+                    </Typography>                  
+                  </>
+                )}
+                
 
                 {/* CONTENIDO NORMAL */}
 
@@ -489,13 +521,12 @@ function MobileAreasCards() {
                   <Typography
                     component="span"
                     sx={{
-                      fontSize: "0.7rem",
-                      lineHeight: 1.45,
+                      fontSize: "0.8rem",
+                      lineHeight: 1.5,
                       color:
                         "var(--contrastText)",
                       opacity: 0.9,
-                      textAlign: "center",
-                      mt: 0.5,
+                      textAlign: "center"
                     }}
                   >
                     {item.description}
