@@ -1,0 +1,10 @@
+Header:
++
+
+Hero:
++Que giren lentamente los campos
++Poner el logo al medio en vision integral
++"Quiero mi diagnostico" -> Contactanos
++"Negocios inteligentes" en vez de ingenieria fiscal
++"Conocé nuest..." -> Servicios
++Desaparecer el giratorio y poner tarjetas

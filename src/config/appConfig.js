@@ -26,7 +26,10 @@ export const appConfig = {
       secondary:"#e0f9f4", //lightgreen
       captions:"#0096c8", //blue
       text:"#000000", //black
-      contrastText:"#ffffff"
+      text2:"#536568", //grey
+      contrastText:"#ffffff",
+      contrastPrimary:"#006969",
+      contrastSecondary:"#C4E9E2"
     },
     /*POR AHORA NO LOS UTILIZAMOS*/
     dark: {
@@ -35,7 +38,10 @@ export const appConfig = {
       secondary:"#e0f9f4", //lightgreen
       captions:"#38cdff", //blue
       text:"#000000", //black
-      contrastText:"#ffffff"
+      text2:"#536568", //grey
+      contrastText:"#ffffff",
+      contrastPrimary:"#006969",
+      contrastSecondary:"#BBCFCB"
     },
   },
 };

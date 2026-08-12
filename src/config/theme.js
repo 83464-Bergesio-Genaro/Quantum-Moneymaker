@@ -12,19 +12,17 @@ export const fontFamily = {
 const baseTheme = createTheme();
 export const theme = createTheme({
   typography: {
-    // 1. FUENTE POR DEFECTO (Textos Generales)
-    fontFamily: fontFamily.general, 
 
-    // 2. TEXTOS DESTACADOS (Headings y Subtítulos) -> Noto Sans
+    fontFamily: fontFamily.general, 
     h1: {
       fontFamily: fontFamily.destacados,
       fontWeight: 700,
       fontSize: '3rem',
       [baseTheme.breakpoints.up('md')]: {
-        fontSize: '3.5rem', 
+        fontSize: '4rem', 
       },
       [baseTheme.breakpoints.up('lg')]: {
-        fontSize: '4rem',
+        fontSize: '5.4rem',
       },
       lineHeight: 1.167,
       letterSpacing: '-0.01562em',
