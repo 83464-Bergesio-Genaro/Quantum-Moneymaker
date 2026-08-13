@@ -19,7 +19,6 @@ export default function App(): JSX.Element {
       ? "/"
       : import.meta.env.BASE_URL.replace(/\/$/, "");
 
-  // 2. EJECUTAMOS LA APLICACIÓN DE COLORES UNA SOLA VEZ
   useEffect(() => {
     applyCssVariables();
   }, []);

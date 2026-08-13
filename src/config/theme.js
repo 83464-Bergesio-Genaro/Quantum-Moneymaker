@@ -35,7 +35,7 @@ export const theme = createTheme({
         fontSize: '3rem', 
       },
       [baseTheme.breakpoints.up('lg')]: {
-        fontSize: '3.2rem',
+        fontSize: '4rem',
       },
       lineHeight: 1.2,
       letterSpacing: '-0.00833em',
