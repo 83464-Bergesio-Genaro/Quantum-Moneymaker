@@ -8,7 +8,6 @@ import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
 
 interface ProblemServiceItem {
   id: string;
-  number: string;
   icon: React.ReactNode;
   painPoints: string[];
   solutionTitle: string;
@@ -18,7 +17,6 @@ interface ProblemServiceItem {
 const INTERACTIVE_CARDS: ProblemServiceItem[] = [
   {
     id: "fiscal",
-    number: "01",
     icon: <AccountBalanceOutlinedIcon fontSize="large" />,
     painPoints: [
       "¿No sabés si estás pagando impuestos de más o de menos?",
@@ -30,7 +28,6 @@ const INTERACTIVE_CARDS: ProblemServiceItem[] = [
   },
   {
     id: "fiduciario",
-    number: "02",
     icon: <ArchitectureOutlinedIcon fontSize="large" />,
     painPoints: [
       "¿Querés armar un fideicomiso pero no sabés cómo estructurarlo?",
@@ -42,7 +39,6 @@ const INTERACTIVE_CARDS: ProblemServiceItem[] = [
   },
   {
     id: "laboral",
-    number: "03",
     icon: <GroupsOutlinedIcon fontSize="large" />,
     painPoints: [
       "¿Tenés personal en convenio y se te dificulta la gestión?",
@@ -54,7 +50,6 @@ const INTERACTIVE_CARDS: ProblemServiceItem[] = [
   },
   {
     id: "financiero",
-    number: "04",
     icon: <TrendingUpOutlinedIcon fontSize="large" />,
     painPoints: [
       "¿No tenés claro si tu proyecto es viable financieramente?",
@@ -66,7 +61,6 @@ const INTERACTIVE_CARDS: ProblemServiceItem[] = [
   },
   {
     id: "estructural",
-    number: "05",
     icon: <AccountTreeOutlinedIcon fontSize="large" />,
     painPoints: [
       "¿Tus asesores (contador, abogado, financiero) no hablan entre sí?",
@@ -79,7 +73,6 @@ const INTERACTIVE_CARDS: ProblemServiceItem[] = [
 ];
 
 export const ServicesSection: React.FC = () => {
-  // Estado para gestionar cuál tarjeta está activa al presionar en Mobile
   const [activeCard, setActiveCard] = useState<string | null>(null);
 
   const handleCardClick = (id: string) => {
@@ -104,17 +97,26 @@ export const ServicesSection: React.FC = () => {
       </Box>
 
       {/* Grid de Tarjetas */}
-      <Grid container spacing={4} justifyContent="center">
+      <Grid container spacing={3} justifyContent="center">
         {INTERACTIVE_CARDS.map((item) => {
           const isFlipped = activeCard === item.id;
+          const isFullWidth = item.id === "estructural";
 
           return (
-            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.id}>
+            <Grid
+              size={{
+                xs: 12,
+                sm: isFullWidth ? 12 : 6,
+                md: isFullWidth ? 12 : 3
+              }}
+              key={item.id}
+            >
               <Card
                 onClick={() => handleCardClick(item.id)}
                 elevation={0}
                 sx={{
-                  height: "380px",
+                  height: isFullWidth ? "auto" : "380px",
+                  minHeight: isFullWidth ? "220px" : "auto",
                   borderRadius: 4,
                   backgroundColor: "rgba(255, 255, 255, 0.03)",
                   border: "1px solid rgba(255, 107, 107, 0.2)",
@@ -137,78 +139,62 @@ export const ServicesSection: React.FC = () => {
               >
                 <CardContent
                   sx={{
-                    p: 4,
+                    p: 3,
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    textAlign: "center",
                     boxSizing: "border-box"
                   }}
                 >
-                  {/* Cabecera Frente: Número e Ícono */}
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      mb: 3
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        color: "var(--warningText)",
-                        fontWeight: 800,
-                        fontSize: "1.2rem"
-                      }}
-                    >
-                      {item.number}
-                    </Typography>
-                    <Box sx={{ color: "var(--warningText)" }}>{item.icon}</Box>
+                  {/* Ícono Arriba Centrado */}
+                  <Box sx={{ color: "var(--warningText)", pt: 1 }}>
+                    {item.icon}
                   </Box>
 
-                  {/* Lista de Preguntas (Grandes) */}
+                  {/* Preguntas Centradas y Sin Viñetas */}
                   <Box
-                    component="ul"
                     sx={{
-                      p: 0,
-                      m: 0,
-                      listStyle: "none",
                       display: "flex",
-                      flexDirection: "column",
+                      flexDirection: isFullWidth ? { xs: "column", md: "row" } : "column",
+                      justifyContent: isFullWidth ? "space-around" : "center",
+                      alignItems: "center",
                       gap: 2,
-                      my: "auto"
+                      my: "auto",
+                      px: 1,
+                      width: "100%"
                     }}
                   >
                     {item.painPoints.map((point, index) => (
                       <Typography
-                        component="li"
                         key={index}
                         sx={{
                           color: "#e6f1ff",
-                          fontSize: { xs: "0.95rem", md: "1.05rem" },
+                          fontSize: { xs: "0.95rem", md: "1rem" },
                           fontWeight: 600,
                           lineHeight: 1.4,
-                          display: "flex",
-                          alignItems: "flex-start",
-                          gap: 1.5
+                          maxWidth: isFullWidth ? { md: "30%" } : "100%"
                         }}
                       >
-                        <Box component="span" sx={{ color: "var(--warningText)" }}>
-                          •
-                        </Box>
                         {point}
                       </Typography>
                     ))}
                   </Box>
+
+                  {/* Pie de tarjeta: Pregunta de solución */}
                   <Typography
                     component="span"
                     sx={{
-                      fontSize: "0.65rem",
-                      fontWeight: 600,
+                      fontSize: { xs: "1rem", md: "0.90rem" },
+                      fontWeight: 700,
                       color: "var(--warningText)",
-                      mt: 0.5,
+                      letterSpacing: "0.02em",
+                      pb: 1
                     }}
                   >
-                    ¿Cómo lo solucionamos?
+                    ¿CÓMO LO SOLUCIONAMOS?
                   </Typography>
                 </CardContent>
 
@@ -229,6 +215,7 @@ export const ServicesSection: React.FC = () => {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
+                    textAlign: "center",
                     transition: "all 0.4s ease-in-out",
                     opacity: isFlipped ? 1 : 0,
                     visibility: isFlipped ? "visible" : "hidden",
@@ -236,22 +223,9 @@ export const ServicesSection: React.FC = () => {
                   }}
                 >
                   <Typography
-                    sx={{
-                      color: "#64ffda",
-                      fontWeight: 800,
-                      fontSize: "0.85rem",
-                      textTransform: "uppercase",
-                      letterSpacing: "0.1em",
-                      mb: 1
-                    }}
-                  >
-                    Solución propuesta
-                  </Typography>
-
-                  <Typography
                     variant="h5"
                     sx={{
-                      color: "#e6f1ff",
+                      color: "#64ffda",
                       fontWeight: 700,
                       mb: 2
                     }}
@@ -263,7 +237,9 @@ export const ServicesSection: React.FC = () => {
                     sx={{
                       color: "#8892b0",
                       fontSize: "0.95rem",
-                      lineHeight: 1.6
+                      lineHeight: 1.6,
+                      maxWidth: isFullWidth ? "800px" : "100%",
+                      mx: "auto"
                     }}
                   >
                     {item.solutionDescription}
