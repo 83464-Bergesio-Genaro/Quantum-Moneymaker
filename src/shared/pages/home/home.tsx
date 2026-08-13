@@ -16,6 +16,7 @@ import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import MainHero from "./hero";
+import { ServicesSection } from "./servicesSection";
 
 const colors = {
   background: "var(--background)",
@@ -38,6 +39,7 @@ export default function Home() {
       }}
     >
     <MainHero/>
+    <ServicesSection/>
       {/* =========================================================
           STATS
       ========================================================= */}

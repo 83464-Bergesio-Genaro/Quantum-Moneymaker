@@ -30,7 +30,8 @@ export const appConfig = {
       contrastText:"#ffffff",
       contrastPrimary:"#006969",
       contrastSecondary:"#C4E9E2",
-      constratCaptions:"#0a192f"
+      contrastCaptions:"#0a192f",
+      warningText:"#ff6b6b"
     },
     /*POR AHORA NO LOS UTILIZAMOS*/
     dark: {
@@ -43,7 +44,8 @@ export const appConfig = {
       contrastText:"#ffffff",
       contrastPrimary:"#006969",
       contrastSecondary:"#BBCFCB",
-      constratCaptions:"#0a192f"
+      contrastCaptions:"#0a192f",
+      warningText:"#ff6b6b"
     },
   },
 };
