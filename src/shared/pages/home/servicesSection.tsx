@@ -65,7 +65,8 @@ const INTERACTIVE_CARDS: ProblemServiceItem[] = [
     painPoints: [
       "¿Tus asesores (contador, abogado, financiero) no hablan entre sí?",
       "¿No tenés un profesional que vea toda la foto de tu negocio?",
-      "¿Necesitás orden, proyección y acompañamiento estratégico?"
+      "¿Necesitás orden, proyección y acompañamiento estratégico?",
+      "¿Queres expandirte a nuevas areas y no sabes por donde empezar?"
     ],
     solutionTitle: "Diagnóstico Estructural",
     solutionDescription: "Alineación holística de todas las áreas operativas, contables y legales bajo una misma visión de negocio."
@@ -107,7 +108,7 @@ export const ServicesSection: React.FC = () => {
               size={{
                 xs: 12,
                 sm: isFullWidth ? 12 : 6,
-                md: isFullWidth ? 12 : 3
+                xl: isFullWidth ? 12 : 3
               }}
               key={item.id}
             >
@@ -160,6 +161,7 @@ export const ServicesSection: React.FC = () => {
                       display: "flex",
                       flexDirection: isFullWidth ? { xs: "column", md: "row" } : "column",
                       justifyContent: isFullWidth ? "space-around" : "center",
+                      py:isFullWidth? 6:0,
                       alignItems: "center",
                       gap: 2,
                       my: "auto",
@@ -172,7 +174,7 @@ export const ServicesSection: React.FC = () => {
                         key={index}
                         sx={{
                           color: "#e6f1ff",
-                          fontSize: { xs: "0.95rem", md: "1rem" },
+                          fontSize:isFullWidth?{sm:"0.9rem", xl:"1.4rem" }: {xs:"0.9rem", sm:"0.9rem" ,xl:"1rem" },
                           fontWeight: 600,
                           lineHeight: 1.4,
                           maxWidth: isFullWidth ? { md: "30%" } : "100%"
@@ -187,7 +189,7 @@ export const ServicesSection: React.FC = () => {
                   <Typography
                     component="span"
                     sx={{
-                      fontSize: { xs: "1rem", md: "0.90rem" },
+                      fontSize:isFullWidth? { xs: "1rem", md: "0.75rem",xl:"1.2rem" }:{ xs: "1rem", md: "0.75rem",xl:"1rem" },
                       fontWeight: 700,
                       color: "var(--warningText)",
                       letterSpacing: "0.02em",

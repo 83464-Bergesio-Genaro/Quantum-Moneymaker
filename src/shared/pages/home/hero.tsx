@@ -75,7 +75,7 @@ export default function MainHero(){
         display: "flex",
         alignItems: "center",
         position: "relative",
-        py: { xs: 4,xl:16},
+        py: { xs: 4,xl:12},
         }}
         >
         {/*Una mancha random que le gusto al chat, lo reemplazaria por los fondos de lineas*/}
