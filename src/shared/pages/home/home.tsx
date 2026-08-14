@@ -17,6 +17,8 @@ import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import MainHero from "./hero";
 import { ServicesSection } from "./servicesSection";
+import { Link } from "react-router-dom";
+import Proposal from "./proposal";
 
 const colors = {
   background: "var(--background)",
@@ -28,18 +30,10 @@ const colors = {
   white: "var(--white)",
 };
 
-
-export default function Home() {
-  return (
-    <Box
-      sx={{
-        backgroundColor: colors.background,
-        color: colors.text,
-        overflow:"hidden",
-      }}
-    >
-    <MainHero/>
-    <ServicesSection/>
+function Stats(){
+  return(
+    <>
+    
       {/* =========================================================
           STATS
       ========================================================= */}
@@ -120,173 +114,23 @@ export default function Home() {
           </Grid>
         </Container>
       </Box>
-
-      {/* =========================================================
-          PROBLEMAS
-      ========================================================= */}
-
-      <Box
+    </>
+  );
+}
+function YearsExperience(){
+  return(
+<Box
         component="section"
         sx={{
+          backgroundColor:"var(--primary)",
+          color: colors.white,
           py: {
             xs: 9,
-            md: 14,
+            md: 13,
           },
-        }}
-      >
-        <Container maxWidth="lg">
-          <Box sx={{ maxWidth: 760, mb: 7 }}>
-            <Typography
-              sx={{
-                color: colors.captions,
-                fontWeight: 700,
-                letterSpacing: "0.12em",
-                fontSize: "0.75rem",
-                mb: 2,
-              }}
-            >
-              EL PROBLEMA
-            </Typography>
 
-            <Typography
-              component="h2"
-              sx={{
-                fontSize: {
-                  xs: "2.2rem",
-                  md: "3.2rem",
-                },
-
-                lineHeight: 1.1,
-
-                fontWeight: 800,
-
-                letterSpacing: "-0.04em",
-
-                color: colors.primary,
-
-                mb: 2,
-              }}
-            >
-              El problema no siempre es el número. Es la estructura.
-            </Typography>
-
-            <Typography
-              sx={{
-                color: "#5a6c6f",
-                lineHeight: 1.7,
-              }}
-            >
-              Cuando las decisiones fiscales, laborales, fiduciarias y
-              financieras se analizan por separado, la empresa pierde
-              perspectiva.
-            </Typography>
-          </Box>
-
-          <Grid container spacing={3}>
-            {[
-              {
-                title: "Problemas fiscales",
-                text: "No sé si estoy pagando impuestos de más o de menos.",
-                icon: <AccountBalanceOutlinedIcon />,
-              },
-              {
-                title: "Problemas fiduciarios",
-                text: "Quiero estructurar un proyecto pero no sé qué vehículo utilizar.",
-                icon: <ArchitectureOutlinedIcon />,
-              },
-              {
-                title: "Problemas laborales",
-                text: "Tengo personal y necesito reducir riesgos laborales.",
-                icon: <GroupsOutlinedIcon />,
-              },
-              {
-                title: "Problemas financieros",
-                text: "Mi negocio crece pero los números no me cierran.",
-                icon: <TrendingUpOutlinedIcon />,
-              },
-            ].map((problem) => (
-              <Grid size={{ xs: 12, sm: 6 }} key={problem.title}>
-                <Card
-                  elevation={0}
-                  sx={{
-                    height: "100%",
-
-                    borderRadius: 4,
-
-                    border: "1px solid rgba(0,128,129,0.1)",
-
-                    backgroundColor: colors.white,
-
-                    transition: "0.3s",
-
-                    "&:hover": {
-                      transform: "translateY(-6px)",
-                      boxShadow:
-                        "0 20px 50px rgba(0,80,90,0.1)",
-                      borderColor: `${colors.primary}40`,
-                    },
-                  }}
-                >
-                  <CardContent sx={{ p: 4 }}>
-                    <Box
-                      sx={{
-                        width: 50,
-                        height: 50,
-
-                        borderRadius: 3,
-
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-
-                        backgroundColor: colors.secondary,
-
-                        color: colors.primary,
-
-                        mb: 3,
-                      }}
-                    >
-                      {problem.icon}
-                    </Box>
-
-                    <Typography
-                      sx={{
-                        fontWeight: 800,
-                        fontSize: "1.15rem",
-                        mb: 1.5,
-                      }}
-                    >
-                      {problem.title}
-                    </Typography>
-
-                    <Typography
-                      sx={{
-                        color: "#607174",
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      “{problem.text}”
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* =========================================================
-          PROPUESTA
-      ========================================================= */}
-
-      <Box
-        component="section"
-        sx={{
-          backgroundColor: colors.secondary,
-          py: {
-            xs: 9,
-            md: 14,
-          },
+          position: "relative",
+          overflow: "hidden",
         }}
       >
         <Container maxWidth="lg">
@@ -298,21 +142,37 @@ export default function Home() {
             <Grid size={{ xs: 12, md: 5 }}>
               <Typography
                 sx={{
-                  color: colors.captions,
-                  fontWeight: 700,
-                  letterSpacing: "0.12em",
-                  fontSize: "0.75rem",
-                  mb: 2,
+                  fontSize: {
+                    xs: "6rem",
+                    md: "9rem",
+                  },
+                  lineHeight: 0.8,
+                  fontWeight: 900,
+                  color: colors.text,
+                  letterSpacing: "-0.08em",
                 }}
               >
-                NUESTRA PROPUESTA
+                33
               </Typography>
 
+              <Typography
+                sx={{
+                  mt: 2,
+                  fontWeight: 700,
+                  letterSpacing: "0.18em",
+                  fontSize: "0.8rem",
+                }}
+              >
+                AÑOS DE TRAYECTORIA
+              </Typography>
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 7 }}>
               <Typography
                 component="h2"
                 sx={{
                   fontSize: {
-                    xs: "2.3rem",
+                    xs: "2.2rem",
                     md: "3.3rem",
                   },
 
@@ -322,95 +182,32 @@ export default function Home() {
 
                   letterSpacing: "-0.04em",
 
-                  color: colors.primary,
-
                   mb: 3,
                 }}
               >
-                Una mirada integral para decisiones complejas.
+                33 años viendo cómo cambian las reglas.
               </Typography>
 
               <Typography
                 sx={{
-                  color: "#506669",
+                  color: "rgba(255,255,255,0.7)",
                   lineHeight: 1.8,
+                  maxWidth: 650,
                 }}
               >
-                Unificamos las distintas dimensiones que intervienen
-                en un proyecto para que puedas tomar decisiones con
-                mayor claridad y menor incertidumbre.
+                La experiencia no consiste solamente en conocer las
+                normas. Consiste en entender cómo impactan en las
+                decisiones reales de una empresa.
               </Typography>
-            </Grid>
-
-            <Grid size={{ xs: 12, md: 7 }}>
-              <Stack spacing={2}>
-                {[
-                  ["01", "ORDEN", "Entender dónde estás."],
-                  ["02", "PROYECCIÓN", "Entender hacia dónde podés ir."],
-                  ["03", "ESTRATEGIA", "Definir cómo llegar."],
-                ].map(([number, title, description]) => (
-                  <Box
-                    key={number}
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 3,
-
-                      backgroundColor: colors.white,
-
-                      borderRadius: 4,
-
-                      p: {
-                        xs: 2.5,
-                        md: 3,
-                      },
-
-                      border: "1px solid rgba(0,128,129,0.08)",
-                    }}
-                  >
-                    <Typography
-                      sx={{
-                        fontSize: "1.5rem",
-                        fontWeight: 800,
-                        color: colors.captions,
-                        minWidth: 40,
-                      }}
-                    >
-                      {number}
-                    </Typography>
-
-                    <Box>
-                      <Typography
-                        sx={{
-                          fontWeight: 800,
-                          color: colors.primary,
-                        }}
-                      >
-                        {title}
-                      </Typography>
-
-                      <Typography
-                        sx={{
-                          color: "#627477",
-                          fontSize: "0.9rem",
-                        }}
-                      >
-                        {description}
-                      </Typography>
-                    </Box>
-                  </Box>
-                ))}
-              </Stack>
             </Grid>
           </Grid>
         </Container>
       </Box>
-
-      {/* =========================================================
-          SERVICIOS
-      ========================================================= */}
-
-      <Box
+  );
+}
+function WhatWeDo(){
+  return(
+    <Box
         component="section"
         sx={{
           py: {
@@ -600,105 +397,10 @@ export default function Home() {
           </Grid>
         </Container>
       </Box>
-
-      {/* =========================================================
-          33 AÑOS
-      ========================================================= */}
-
-      <Box
-        component="section"
-        sx={{
-          backgroundColor: "#061e19",
-          color: colors.white,
-          py: {
-            xs: 9,
-            md: 13,
-          },
-
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <Container maxWidth="lg">
-          <Grid
-            container
-            spacing={8}
-            alignItems="center"
-          >
-            <Grid size={{ xs: 12, md: 5 }}>
-              <Typography
-                sx={{
-                  fontSize: {
-                    xs: "6rem",
-                    md: "9rem",
-                  },
-
-                  lineHeight: 0.8,
-
-                  fontWeight: 900,
-
-                  color: colors.captions,
-
-                  letterSpacing: "-0.08em",
-                }}
-              >
-                33
-              </Typography>
-
-              <Typography
-                sx={{
-                  mt: 2,
-                  fontWeight: 700,
-                  letterSpacing: "0.18em",
-                  fontSize: "0.8rem",
-                }}
-              >
-                AÑOS DE TRAYECTORIA
-              </Typography>
-            </Grid>
-
-            <Grid size={{ xs: 12, md: 7 }}>
-              <Typography
-                component="h2"
-                sx={{
-                  fontSize: {
-                    xs: "2.2rem",
-                    md: "3.3rem",
-                  },
-
-                  lineHeight: 1.1,
-
-                  fontWeight: 800,
-
-                  letterSpacing: "-0.04em",
-
-                  mb: 3,
-                }}
-              >
-                33 años viendo cómo cambian las reglas.
-              </Typography>
-
-              <Typography
-                sx={{
-                  color: "rgba(255,255,255,0.7)",
-                  lineHeight: 1.8,
-                  maxWidth: 650,
-                }}
-              >
-                La experiencia no consiste solamente en conocer las
-                normas. Consiste en entender cómo impactan en las
-                decisiones reales de una empresa.
-              </Typography>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* =========================================================
-          CTA
-      ========================================================= */}
-
-      <Box
+  );
+}
+function MakeAMove(){
+  return(<Box
         component="section"
         sx={{
           py: {
@@ -734,15 +436,10 @@ export default function Home() {
                   xs: "2rem",
                   md: "3.2rem",
                 },
-
                 lineHeight: 1.1,
-
                 fontWeight: 800,
-
-                color: colors.white,
-
+                color: "white",
                 letterSpacing: "-0.04em",
-
                 mb: 3,
               }}
             >
@@ -761,34 +458,33 @@ export default function Home() {
               oportunidades existen para tu proyecto.
             </Typography>
 
-            <Button
-              variant="contained"
-              size="large"
-              endIcon={<ArrowForwardIcon />}
-              sx={{
-                backgroundColor: colors.white,
-                color: colors.primary,
-                borderRadius: "30px",
-                px: 4,
-                py: 1.5,
-                fontWeight: 800,
-
-                "&:hover": {
-                  backgroundColor: colors.secondary,
-                },
-              }}
-            >
-              Quiero mi diagnóstico
-            </Button>
+<Button
+  variant="contained"
+  component={Link}
+  to="/contact-us"
+  size="large"
+  endIcon={<ArrowForwardIcon />}
+  sx={{
+    backgroundColor: colors.captions, // Asegúrate de que esta variable existe
+    color: "black",
+    borderRadius: "30px",
+    px: 4,
+    py: 1.5,
+    fontWeight: 800,
+    "&:hover": {
+      backgroundColor: colors.secondary,
+    },
+  }}
+>
+  Quiero mi diagnóstico
+</Button>
           </Box>
         </Container>
-      </Box>
-
-      {/* =========================================================
-          FOOTER
-      ========================================================= */}
-
-      <Box
+      </Box>);
+}
+function Footer(){
+  return(
+    <Box
         component="footer"
         sx={{
           backgroundColor: "#000a0f",
@@ -898,6 +594,23 @@ export default function Home() {
           </Stack>
         </Container>
       </Box>
+  );
+}
+export default function Home() {
+  return (
+    <Box
+      sx={{
+        backgroundColor: colors.background,
+        color: colors.text,
+        overflow:"hidden",
+      }}
+    >
+    <MainHero/>
+    <ServicesSection/>
+    <Proposal/>
+    <YearsExperience/>
+    <MakeAMove/>
+      
     </Box>
   );
 }

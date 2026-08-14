@@ -16,7 +16,7 @@ import { appConfig } from "../../../config/appConfig";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 
-const baseUrl = appConfig.appURL
+const baseUrl = appConfig.appURL;
 const areas = [
   {
     text: "FISCAL",

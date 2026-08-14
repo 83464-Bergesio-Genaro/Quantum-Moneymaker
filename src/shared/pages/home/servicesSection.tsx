@@ -81,16 +81,15 @@ export const ServicesSection: React.FC = () => {
   };
 
   return (
-    <Box sx={{ backgroundColor: "var(--contrastCaptions)", py: 10, px: { xs: 2, md: 6 } }}>
+    <Box sx={{ backgroundColor: "var(--contrastCaptions)", py: 5, px: { xs: 2, md: 6 } }}>
       {/* Título Principal Grande */}
-      <Box sx={{ textAlign: "center", mb: 8 }}>
+      <Box sx={{ textAlign: "center", mb: 6}}>
         <Typography
           variant="h2"
           component="h2"
           sx={{
             color: "var(--warningText)",
-            letterSpacing: "-0.02em",
-            mb: 2
+            letterSpacing: "-0.02em"
           }}
         >
           ¿Te identificás con esto?
@@ -116,7 +115,7 @@ export const ServicesSection: React.FC = () => {
                 onClick={() => handleCardClick(item.id)}
                 elevation={0}
                 sx={{
-                  height: isFullWidth ? "auto" : "380px",
+                  height: isFullWidth ? "auto" : "360px",
                   minHeight: isFullWidth ? "220px" : "auto",
                   borderRadius: 4,
                   backgroundColor: "rgba(255, 255, 255, 0.03)",
@@ -150,8 +149,7 @@ export const ServicesSection: React.FC = () => {
                     boxSizing: "border-box"
                   }}
                 >
-                  {/* Ícono Arriba Centrado */}
-                  <Box sx={{ color: "var(--warningText)", pt: 1 }}>
+                  <Box sx={{ color: "var(--warningText)", pt: 1,display:isFullWidth? {xs:"block",sm:"none"}:"block" }}>
                     {item.icon}
                   </Box>
 
@@ -174,7 +172,7 @@ export const ServicesSection: React.FC = () => {
                         key={index}
                         sx={{
                           color: "#e6f1ff",
-                          fontSize:isFullWidth?{sm:"0.9rem", xl:"1.4rem" }: {xs:"0.9rem", sm:"0.9rem" ,xl:"1rem" },
+                          fontSize:isFullWidth?{sm:"1.1rem", xl:"1.4rem" }: {xs:"0.9rem", sm:"1.1rem" ,xl:"1.1rem" },
                           fontWeight: 600,
                           lineHeight: 1.4,
                           maxWidth: isFullWidth ? { md: "30%" } : "100%"
@@ -189,7 +187,7 @@ export const ServicesSection: React.FC = () => {
                   <Typography
                     component="span"
                     sx={{
-                      fontSize:isFullWidth? { xs: "1rem", md: "0.75rem",xl:"1.2rem" }:{ xs: "1rem", md: "0.75rem",xl:"1rem" },
+                      fontSize:isFullWidth? { xs: "1rem", md: "0.75rem",xl:"1.2rem" }:{ xs: "1rem", md: "0.9rem",xl:"1.05rem" },
                       fontWeight: 700,
                       color: "var(--warningText)",
                       letterSpacing: "0.02em",

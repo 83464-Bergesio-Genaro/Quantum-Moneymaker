@@ -43,7 +43,7 @@ export default function Footer() {
               }}
             >
               <Typography
-                variant="caption"
+                variant="body2"
                 sx={{
                   fontWeight: 600,
                   opacity: 0.9,
@@ -96,7 +96,7 @@ export default function Footer() {
                     <LinkedInIcon fontSize="small" />
                   </IconButton>
 
-                  <Typography variant="caption">
+                  <Typography variant="body2">
                     Seguinos en LinkedIn
                   </Typography>
                 </Stack>
@@ -118,12 +118,12 @@ export default function Footer() {
               }}
             >
               <Typography
-                variant="caption"
+                variant="body2"
                 sx={{
                   opacity: 0.8,
                 }}
               >
-                Versión {appConfig.appVersion}
+                Versión {appConfig.appVersion??"1.0.1"}
               </Typography>
             </Box>
           </Grid>
