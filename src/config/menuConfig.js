@@ -1,33 +1,27 @@
 import Diversity3Icon from "@mui/icons-material/Diversity3";
-import SportsHandballIcon from "@mui/icons-material/SportsHandball";
-import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 import HelpIcon from "@mui/icons-material/Help";
 import NewspaperIcon from '@mui/icons-material/Newspaper';
-import HubIcon from '@mui/icons-material/Hub';
 import BadgeIcon from '@mui/icons-material/Badge';
-import LocalAirportIcon from '@mui/icons-material/LocalAirport';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
 
 export const sharedMenu = [
   {
-    label: "Home",
+    label: "Inicio",
     path: "/",
     icon: Diversity3Icon
   },
   {
-    label: "Services",
+    label: "Servicios",
     path: "/services",
-    icon: Diversity3Icon,
+    icon: NewspaperIcon,
   },
   {
-    label: "About Us",
+    label: "Nosotros",
     path: "/about-us",
-    icon: Diversity3Icon,
+    icon: HelpIcon,
   },
   {
-    label: "Contact Us",
+    label: "Contactanos",
     path: "/contact-us",
-    icon: Diversity3Icon,
+    icon: BadgeIcon,
   },  
 ];

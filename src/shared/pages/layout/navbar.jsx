@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
+  Grid,
   Box,
   IconButton,
   Divider,
@@ -12,6 +13,7 @@ import {
   ListItemIcon,
   Typography,
   Button,
+  Container,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
@@ -45,59 +47,83 @@ export default function Navbar() {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ boxShadow: 2, bgcolor:"var(--primary)", width: "100%" }}>
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-         <Box
-            component={Link}
-            to="/"
-            sx={{
-              width: 240,
-              height: 60,
-              
-              display: "block",
-              flexShrink: 0,
-              my: 1,
-            }}
-          >
-            <Box
-              component="img"
-              src={`${baseUrl}QuantumLogo.svg`}
-              alt="Quantum Logo"
+      <AppBar position="fixed" sx={{ boxShadow: 2, bgcolor:"var(--primary)", width: "100%"}}>
+        <Container maxWidth="xl">
+          <Toolbar sx={{ justifyContent: "space-between" }}>
+
+          <Box
+              component={Link}
+              to="/"
               sx={{
-                
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                objectPosition: "left center",
+                height: 80,        
+                display: "block",
+                flexShrink: 0,
+                my: 1,
               }}
-            />
-          </Box>
-          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, flexGrow: 1, justifyContent: "flex-end", alignitems: "center" }}>
-            {menu.map((item) => (
-              <Button
-                key={item.path}
-                component={Link}
-                to={item.path}
-                sx={{ color: "white", fontWeight: "bold", fontSize: 15 }}
-              >
-                {item.label}
-              </Button>
-            ))}
+            >
+              <Box
+                component="img"
+                src={`${baseUrl}QuantumLogo.svg`}
+                alt="Quantum Logo"
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  objectPosition: "center center",
+                }}
+              />
+            </Box>
+            <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3, flexGrow: 2, justifyContent: "flex-end", alignitems: "center" }}>
+              {menu.map((item) => (
+                <Button
+                  key={item.path}
+                  component={Link}
+                  to={item.path}
+                  sx={{ color: "white", fontWeight: 700, fontSize: 16,textTransform: 'none' }}
+                >
+                  {item.label}
+                </Button>
+              ))}
 
-          </Box>
+            </Box>
+          <Box sx={{display:{xs:"block",md:"none"}, flexGrow: 1,marginLeft:-4 }}>
+            <Typography
+              sx={{
+                fontWeight: 800,
+                fontSize: { xs: "1.3rem", md: "1.5rem" },
+                letterSpacing: "-0.04em",
+                color: "var(--text)",
+                
+              }}
+            >
+              QUANTUM
+            </Typography>
 
-          <IconButton
-            color="inherit"
-            edge="end"
-            sx={{ display: { xs: "flex", md: "none" } }}
-            onClick={handleMobileOpen}
-          >
-            <MenuIcon />
-          </IconButton>
-        </Toolbar>
+            <Typography
+              sx={{
+                fontSize: "0.65rem",
+                letterSpacing: "0.18em",
+                color: "var(--secondary)",
+                fontWeight: 600,
+              }}
+            >
+              CONSULTORA SAS
+            </Typography>
+          </Box> 
+            <IconButton
+              color="inherit"
+              edge="end"
+              sx={{ display: { xs: "flex", md: "none" } }}
+              onClick={handleMobileOpen}
+            >
+              <MenuIcon />
+            </IconButton>
+            
+          </Toolbar>
+
+        </Container>       
       </AppBar>
 
-      {/* Mobile floating Menu */}
       <Menu
         anchorEl={mobileAnchorEl}
         open={Boolean(mobileAnchorEl)}
@@ -106,7 +132,7 @@ export default function Navbar() {
         transformOrigin={{ vertical: "top", horizontal: "right" }}
         sx={{ display: { xs: "block", md: "none" } }}
       >
-        
+          
         {menu.map((item) => {
           const ItemIcon = item.icon;
           return (

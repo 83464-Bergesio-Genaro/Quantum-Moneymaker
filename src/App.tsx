@@ -1,16 +1,19 @@
 import { useEffect, type JSX } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import type {RouteObject} from  'react-router-dom';
+import type { RouteObject } from 'react-router-dom';
+
+// 1. IMPORTACIONES DE MATERIAL UI Y TU TEMA
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { theme, applyCssVariables } from './config/theme'; 
+
 import MainLayout from './shared/pages/layout/layout'; 
-import SharedMain from './shared/pages/main';
+import SharedMain from './shared/pages/home/home';
 import ContactUs from './shared/pages/contact/contactUs';
 import AboutUs from './shared/pages/aboutUs/aboutUs';
 import Services from './shared/pages/services/services';
-import {applyCssVariables} from './config/theme';
-import {appConfig } from './config/appConfig';
 
 export default function App(): JSX.Element {
-  // 2. Calculamos el basename dinámico (TS infiere que es un string)
   const routerBaseName: string =
     import.meta.env.BASE_URL === "/"
       ? "/"
@@ -20,25 +23,12 @@ export default function App(): JSX.Element {
     applyCssVariables();
   }, []);
 
-  useEffect(() => {
-    const themeColors = appConfig.themes["light"];
-    
-    Object.keys(themeColors).forEach((key) => {
-      // Forzamos a que TS entienda que key es una propiedad válida de themeColors
-      const colorKey = key as keyof typeof themeColors;
-      
-      document.documentElement.style.setProperty(`--${key}`, themeColors[colorKey]);
-    });
-  }, []);
-
-  // 4. Tipamos el array de rutas usando 'RouteObject' de react-router-dom
   const routes: RouteObject[] = [
     {
       path: "/",
       handle: { title: "Quantum" },
       element: <MainLayout />, 
       children: [
-        /* === PUBLIC ROUTES === */
         {
           index: true, 
           handle: { title: "Home" },
@@ -63,10 +53,15 @@ export default function App(): JSX.Element {
     },
   ];
 
-  // 5. Creamos el router pasando el tipo y las opciones
   const router = createBrowserRouter(routes, {
     basename: routerBaseName,
   });
 
-  return <RouterProvider router={router} />;
+  // 3. ENVOLVEMOS EL ROUTER CON EL PROVEEDOR DE TEMA
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline /> {/* Aplica las fuentes base al body y resetea CSS */}
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }
