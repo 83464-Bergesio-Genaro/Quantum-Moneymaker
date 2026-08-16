@@ -2,12 +2,6 @@ import { Box ,Grid,Container,Typography,Stack} from "@mui/material";
 import { appConfig } from "../../../config/appConfig";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface ItemProps {
-  id: number;
-  text: string;
-  description: string;
-  image: string;
-}
 const baseUrl = appConfig.appURL;
 interface StepItem {
   id: string;
@@ -19,9 +13,9 @@ interface StepItem {
 
 // 2. Tus datos originales
 const stepsData = [
-  ["01", "ORDEN", "Entender dónde estás.", "/numbers/OneRaj.svg"],
-  ["02", "PROYECCIÓN", "Entender hacia dónde podés ir.", "/numbers/TwoRaj.svg"],
-  ["03", "ESTRATEGIA", "Definir cómo llegar.", "/numbers/ThreeRaj.svg"],
+  ["01", "Analizarlo", "Entender como funciona hoy nos permite mejorar mañana", "/numbers/OneRaj.svg"],
+  ["02", "Planificarlo", "Entender hacia dónde podés ir, una hoja de ruta para tus metas", "/numbers/TwoRaj.svg"],
+  ["03", "Resolverlo", "Entendemos el problema mejoramos el futuro", "/numbers/ThreeRaj.svg"],
 ];
 
 // 3. Transformar los datos al formato de objeto
@@ -35,41 +29,128 @@ const steps: StepItem[] = stepsData.map((step) => ({
 
 const SmoothList = ({ items }: { items: StepItem[] }) => {
   return (
-    <div className="flex flex-col gap-4 max-w-2xl mx-auto p-4">
-      <AnimatePresence mode="popLayout">
-        {items.map((item) => (
-          <motion.div
-            key={item.id}
-            layout
-            initial={{ opacity: 0, x: -50, scale: 0.9 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: 50, scale: 0.9 }}
-            transition={{ duration: 0.4, type: "spring", stiffness: 150 }}
-            // Estilos de la tarjeta
-            className="relative overflow-hidden rounded-xl shadow-lg p-6 flex items-center gap-6"
-            style={{ backgroundColor: "var(--primary)", color: "white" }} 
-          >
-            {/* Contenedor de la imagen para controlar el tamaño */}
-            <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-white/10 rounded-full">
-              <img 
-                src={item.image} 
-                alt={item.number} 
-                className="w-10 h-10 object-contain" // Tamaño reducido y controlado
-              />
-            </div>
+    <Grid size={{ xs: 12, md: 6 }}>
+      <Grid container spacing={2}>
+        <AnimatePresence mode="popLayout">
+          {items.map((item) => (
+              <Grid
+                container
+                component={motion.div} // 1. El Grid actúa como el elemento animado
+                size={12}
+                initial={{ opacity: 0, y: 30 }} // Estado inicial del contenedor
+                whileInView={{ opacity: 1, y: 0 }} // Estado final al entrar en vista
+                viewport={{ 
+                  once: true,
+                  amount: 0.5 // Se activa al 50% de visibilidad del contenedor completo
+                }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                sx={{ 
+                  borderRadius: "16px",
+                  height: "120px", 
+                  border: "1px solid rgba(0,128,129,0.48)",
+                  overflow: "hidden" // Recomendado para evitar desbordes durante la animación
+                }}
+              >
+              <Grid size={{xs:3}}>
+                <Box
+                  component="img"
+                  src={`${baseUrl}${item.image}`}
+                  alt="Numeros Quantum"
+                  sx={{height:"120px", backgroundOrigin:"center center",backgroundSize:"cover"}}
+                />
+              </Grid>
+              <Grid size={{xs:9}} sx={{pt:2}}>
+                <Typography
+                  component={motion.h6}
+                  variant="h6"
+                  sx={{
+                    color: "var(--captions)",
+                    fontWeight: 700,
+                    textAlign:"left",
+                    letterSpacing: "0.12em",
+                  }}
+                >
+                  {item.title}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "var(--text)",
+                    fontWeight: 700,
+                    textAlign:"left",
+                    letterSpacing: "0.12em",
+                  }}
+                >
+                  {item.description}
+                </Typography>                
+              </Grid>
+
+            </Grid>
             
-            {/* Contenido de texto */}
-            <div>
-              <h3 className="font-bold text-xl tracking-wide">{item.title}</h3>
-              <p className="text-white/80 mt-1 text-sm leading-relaxed">{item.description}</p>
-            </div>
-          </motion.div>
-        ))}
-      </AnimatePresence>
-    </div>
+          ))}
+        </AnimatePresence>
+      </Grid>
+    </Grid>
   );
 };
+function TitleMotion(){
+  return(
+    <Grid size={{ xs: 12, md: 6 }}>
 
+      <Typography
+        component={motion.h2}
+        variant="h2"
+        initial={{ opacity: 0, y: 30 }} 
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ 
+          once: true,
+          amount: 0.5 
+        }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        sx={{
+          color: "var(--captions)",
+          fontWeight: 700,
+          letterSpacing: "0.12em",
+          mb: 2,
+        }}
+      >
+        NUESTRA PROPUESTA
+      </Typography>
+      <Typography
+        component={motion.h4}
+        variant="h4"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        sx={{
+          color: "var(--primary)",
+          fontFamily: '"Galano Grotesque",sans-serif',
+          mb: 3,
+        }}
+      >
+        Una mirada integral para decisiones complejas.
+      </Typography>
+
+      {/* Animación para el Párrafo */}
+      <Typography
+        component={motion.p}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }} 
+        transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+        sx={{
+          color: "#506669",
+          lineHeight: 1.8,
+        }}
+      >
+        Unificamos las distintas dimensiones que intervienen
+        en un proyecto para que puedas tomar decisiones con
+        mayor claridad y menor incertidumbre.
+      </Typography>
+    </Grid>
+  )
+}
 export default function Proposal(){
 
   return(
@@ -84,55 +165,9 @@ export default function Proposal(){
         }}
       >
         <Container maxWidth="lg">
-          <Grid
-            container
-            spacing={8}
-            alignItems="center"
-          >
-            <Grid size={{ xs: 12, md: 12 }}>
-              <Typography
-              variant="h2"
-                sx={{
-                  color: "var(--captions)",
-                  fontWeight: 700,
-                  letterSpacing: "0.12em",
-                  mb: 2,
-                }}
-              >
-                NUESTRA PROPUESTA
-              </Typography>
-
-              <Typography
-                variant="h4"
-                sx={{
-                  color: "var(--primary)",
-                  fontFamily:'"Galano Grotesque",sans-serif',
-                  mb: 3,
-                }}
-              >
-                Una mirada integral para decisiones complejas.
-              </Typography>
-
-              <Typography
-                sx={{
-                  color: "#506669",
-                  lineHeight: 1.8,
-                }}
-              >
-                Unificamos las distintas dimensiones que intervienen
-                en un proyecto para que puedas tomar decisiones con
-                mayor claridad y menor incertidumbre.
-              </Typography>
-            </Grid>
-            <Grid size={{ xs: 12, md: 12 }}>
-            
-              <Stack spacing={2}>
-                <SmoothList items={steps}>
-
-                </SmoothList>
-              </Stack>
-            </Grid>
-             
+          <Grid container size={12} spacing={4}>
+            <TitleMotion />
+            <SmoothList items={steps}/>
           </Grid>
         </Container>
       </Box>
