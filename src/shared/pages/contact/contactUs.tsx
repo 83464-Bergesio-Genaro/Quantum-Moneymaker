@@ -164,7 +164,7 @@ const [form, setForm] =
         size={{
           xs: 12
         }}
-        sx={{my:8}}
+        sx={{my:4}}
       >
 
         <Box
@@ -192,21 +192,6 @@ const [form, setForm] =
               "blur(10px)",
           }}
         >
-
-          <Typography
-            variant="h5"
-            sx={{
-              color:
-                "var(--primary)",
-
-              fontWeight: 800,
-
-              mb: 1,
-            }}
-          >
-            Contanos sobre tu empresa
-          </Typography>
-
           <Typography
             sx={{
               color:
@@ -214,7 +199,7 @@ const [form, setForm] =
               mb: 4,
             }}
           >
-            Esperamos tu consulta y buscamos ayudarte a completar tus metas!
+            Queremos conocer tu situación y ayudarte a encontrar el camino para alcanzar tus objetivos
           </Typography>
 
 
@@ -232,7 +217,6 @@ const [form, setForm] =
             <Grid
               size={{
                 xs: 12,
-                sm: 6,
               }}
             >
               <TextField
@@ -294,6 +278,28 @@ const [form, setForm] =
             </Grid>
 
 
+            {/* TELÉFONO */}
+
+            <Grid
+              size={{
+                xs: 12,
+                sm: 6,
+              }}
+            >
+              <TextField
+                fullWidth
+                label="Teléfono"
+                value={form.telefono}
+                onChange={(e) =>
+                  handleChange(
+                    "telefono",
+                    e.target.value
+                  )
+                }
+              />
+            </Grid>
+
+
             {/* EMAIL */}
 
             <Grid
@@ -311,28 +317,6 @@ const [form, setForm] =
                 onChange={(e) =>
                   handleChange(
                     "email",
-                    e.target.value
-                  )
-                }
-              />
-            </Grid>
-
-
-            {/* TELÉFONO */}
-
-            <Grid
-              size={{
-                xs: 12,
-                sm: 6,
-              }}
-            >
-              <TextField
-                fullWidth
-                label="Teléfono"
-                value={form.telefono}
-                onChange={(e) =>
-                  handleChange(
-                    "telefono",
                     e.target.value
                   )
                 }
@@ -401,6 +385,7 @@ const [form, setForm] =
             <Grid
               size={{
                 xs: 12,
+                sm: 6,
               }}
             >
 
@@ -574,11 +559,7 @@ function ContactInfo(){
                 mb: 4,
               }}
             >
-              No importa en qué etapa
-              se encuentre tu empresa.
-              Podemos ayudarte a ordenar
-              la situación actual y pensar
-              los próximos pasos.
+              No importa en qué etapa se encuentre tu empresa, podemos ayudarte a ordenar la situación actual y pensar los próximos pasos.
             </Typography>
           </Box>
         </Grid>
@@ -761,11 +742,11 @@ function ContactHero(){
             variant="h1"
             sx={{
               color:
-                "var(--primary)",
+                "var(--captions)",
             }}
           >
             Hablemos sobre
-            tu proyecto.
+            tu proyecto
           </Typography>
       </Grid>
       
