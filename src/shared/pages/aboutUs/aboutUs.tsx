@@ -433,9 +433,7 @@ export default function AboutUs() {
     <Box
       component="main"
       sx={{
-        overflow: "hidden",
-        backgroundColor:
-          "var(--background)",
+        overflow: "hidden"
       }}
     >
       <Box
@@ -443,9 +441,7 @@ export default function AboutUs() {
         sx={{
           py: {
             xs: 6,
-          },
-          backgroundColor:
-            "var(--secondary)",
+          }
         }}
       >
         <Container maxWidth="xl">

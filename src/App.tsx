@@ -11,7 +11,7 @@ import MainLayout from './shared/pages/layout/layout';
 import SharedMain from './shared/pages/home/home';
 import ContactUs from './shared/pages/contact/contactUs';
 import AboutUs from './shared/pages/aboutUs/aboutUs';
-import Services from './shared/pages/services/services';
+import Services from './shared/pages/services/services'; 
 
 export default function App(): JSX.Element {
   const routerBaseName: string =

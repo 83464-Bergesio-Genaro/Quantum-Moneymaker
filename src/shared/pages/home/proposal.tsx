@@ -76,7 +76,6 @@ const SmoothList = ({ items }: { items: StepItem[] }) => {
                   variant="body2"
                   sx={{
                     color: "var(--text)",
-                    fontWeight: 700,
                     textAlign:"left",
                     letterSpacing: "0.12em",
                   }}
