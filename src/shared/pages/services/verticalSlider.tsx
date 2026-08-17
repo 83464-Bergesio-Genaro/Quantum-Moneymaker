@@ -2,12 +2,15 @@ import { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Mousewheel, Pagination } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
-import { Box, Typography, Container, type SxProps, Grid, List, ListItem, ListItemText } from '@mui/material';
+import { Box, Typography, Container, type SxProps, Grid, List, ListItem, ListItemText, useMediaQuery, useTheme } from '@mui/material';
+import type { Theme } from '@emotion/react';
 
-// Estilos obligatorios de Swiper
+// Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import type { Theme } from '@emotion/react';
+
+// Importación del slider horizontal para mobile
+import HorizontalSlider from './horizontalSlider';
 
 interface Servicio {
   id: number;
@@ -17,10 +20,11 @@ interface Servicio {
   incluye: string[]; 
   icono: string;
   anguloBase: number;
+  color: string;
 }
 
 const datosServicios: Servicio[] = [
-    { 
+  { 
     id: 4, 
     titulo: 'Estructural', 
     subTitulo: 'Estructuras Fiduciarias',
@@ -31,7 +35,8 @@ const datosServicios: Servicio[] = [
       'Planificación sucesoria empresarial'
     ],
     icono: '🛡️', 
-    anguloBase: 1 // Abajo
+    anguloBase: 1,
+    color: '#810200' // Color Rojo Obscuro / Granate
   },
   { 
     id: 1, 
@@ -45,20 +50,22 @@ const datosServicios: Servicio[] = [
       'Asistencia en inspecciones y procedimientos administrativos'
     ],
     icono: '🔍', 
-    anguloBase: 90 // Extremo Izquierdo (Activo por defecto)
+    anguloBase: 90,
+    color: '#2ecc71' // Verde
   },
   { 
     id: 2, 
     titulo: 'Ingenieril', 
     subTitulo: 'Consultoría Ingenieril',
-    descripcion: 'La ingeniería fiscal se trata de tener las cuentas al día. Estructuramos tus proyectos bajo normativas estrictas optimizando la carga impositiva global.', 
+    descripcion: 'La ingeniería fiscal se trata de tener las cuentas al día. Estructuramos tus proyectos bajo normativas strictly optimizando la carga impositiva global.', 
     incluye: [
       'Análisis de flujos impositivos',
       'Optimización de costos operativos',
       'Auditoría preventiva de proyectos'
     ],
     icono: '💬', 
-    anguloBase: 180 // Arriba
+    anguloBase: 180,
+    color: '#81007F' // Color Púrpura / Morado
   },
   { 
     id: 3, 
@@ -71,12 +78,15 @@ const datosServicios: Servicio[] = [
       'Asesoramiento en encuadres laborales'
     ],
     icono: '📊', 
-    anguloBase:270 
+    anguloBase: 270,
+    color: '#808100' // Color Olivas / Mostaza
   },
-
 ];
 
 export default function RuedaCardinalServicios() {
+  const theme = useTheme();
+  const esMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   const [indiceActivo, setIndiceActivo] = useState<number>(0);
   const swiperRef = useRef<SwiperType | null>(null);
 
@@ -90,9 +100,12 @@ export default function RuedaCardinalServicios() {
     }
   };
 
-  // Calculamos cuánto debe girar la rueda grande.
-  // Queremos que el servicio seleccionado se mueva hacia la posición de control (180°).
+  if (esMobile) {
+    return <HorizontalSlider />;
+  }
+
   const rotacionRuedaGrande = 180 - datosServicios[indiceActivo].anguloBase;
+  const colorActivoActual = datosServicios[indiceActivo].color;
 
   return (
     <Box sx={{
@@ -106,21 +119,21 @@ export default function RuedaCardinalServicios() {
     }}>
       <Container maxWidth="xl" 
         sx={{
-                display: 'grid',
-                alignItems: 'center',
-                height: '600px',
+            display: 'grid',
+            alignItems: 'center',
+            height: '600px',
         }}>
         <Grid container size={12} spacing={"250px"}>
-            <Grid  size={8} sx={{
+            <Grid size={8} sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 gap: 1,
                 zIndex: 10,
                 height: '600px',
                 px: { xs: 2, md: 4 },
-                pt: {xs:2,md:12}
+                pt: { xs: 2, md: 12 }
             }}>
-            <Typography variant="overline" component="span" sx={estilos.tagSuperior}>
+            <Typography variant="overline" component="span" sx={{ ...estilos.tagSuperior, color: colorActivoActual }}>
                 NUESTROS PROCESOS
             </Typography>
             
@@ -133,28 +146,24 @@ export default function RuedaCardinalServicios() {
                 {datosServicios[indiceActivo].descripcion}
                 </Typography>
 
-                {/* Título de la lista */}
                 <Typography variant="subtitle1" sx={estilos.tituloIncluye}>
                 Alcance
                 </Typography>
 
-                {/* Renderizado dinámico de la lista de MUI */}
                 <List sx={estilos.listaContenedor}>
                 {datosServicios[indiceActivo].incluye.map((item, index) => (
                     <ListItem key={index} disableGutters sx={estilos.itemLista}>
-                    {/* Viñeta personalizada (podés cambiarlo por un icono de MUI si querés) */}
                     <ListItemText 
                         primary={item} 
-                        sx={estilos.textoItem }
+                        sx={estilos.textoItem}
                     />
-                    <Box component="span" sx={estilos.vinetaVerde}>•</Box>
+                    <Box component="span" sx={{ ...estilos.vinetaVerde, color: colorActivoActual }}>•</Box>
                     </ListItem>
                 ))}
                 </List>
             </Box>
             </Grid>
 
-            {/* --- COLUMNA DERECHA: ENGRANAJE CARDINAL --- */}
             <Grid size={4} sx={{
                     position: 'relative',
                     display: 'flex',
@@ -162,7 +171,6 @@ export default function RuedaCardinalServicios() {
                     justifyContent: 'flex-end'
             }}>
             
-            {/* Swiper invisible controlador de gestos fluidos */}
             <Box sx={estilos.capturadorSwiper}>
                 <Swiper
                 direction="vertical"
@@ -190,9 +198,6 @@ export default function RuedaCardinalServicios() {
                 }}
             >
                 {datosServicios.map((servicio, index) => {
-                // CORRECCIÓN DEL CONTRAGIRO:
-                // Para cancelar la rotación total del contenedor, la burbuja gira exactamente
-                // la misma cantidad de grados inversos que tiene la rueda en ese instante.
                 const contrarrotacionBurbuja = -rotacionRuedaGrande;
 
                 return (
@@ -201,13 +206,11 @@ export default function RuedaCardinalServicios() {
                     onClick={() => irAlSlide(index)}
                     sx={{
                         ...estilos.burbujaServicio,
-                        // Distribución matemática exacta en los 4 cuadrantes (Radio de 400px)
                         left: `calc(50% + ${400 * Math.cos(servicio.anguloBase * Math.PI / 180)}px)`,
                         top: `calc(50% + ${400 * Math.sin(servicio.anguloBase * Math.PI / 180)}px)`,
                         transform: `translate(-50%, -50%) rotate(${contrarrotacionBurbuja}deg)`,
-                        borderColor: index === indiceActivo ? '#2ecc71' : '#d1d5db',
+                        borderColor: index === indiceActivo ? servicio.color : '#d1d5db',
                         scale: index === indiceActivo ? '1.15' : '0.9',
-
                         opacity: servicio.anguloBase === 0 ? 0 : index === indiceActivo ? 1 : 0.4
                     }}
                     >
@@ -216,8 +219,8 @@ export default function RuedaCardinalServicios() {
                     </Typography>
                     <Box sx={{ 
                         ...estilos.contenedorIcono, 
-                        borderColor: index === indiceActivo ? '#2ecc71' : '#e0e0e0',
-                        backgroundColor: index === indiceActivo ? '#f4fbf7' : 'transparent'
+                        borderColor: index === indiceActivo ? servicio.color : '#e0e0e0',
+                        backgroundColor: index === indiceActivo ? `${servicio.color}15` : 'transparent'
                     }}>
                         <span style={{ fontSize: '1.8rem' }}>{servicio.icono}</span>
                     </Box>
@@ -233,7 +236,6 @@ export default function RuedaCardinalServicios() {
   );
 }
 
-// Estilos limpios y optimizados para Material UI
 const estilos: Record<string, SxProps<Theme>> = {
   contenedorSeccion: {
     width: '100%',
@@ -261,7 +263,7 @@ const estilos: Record<string, SxProps<Theme>> = {
     letterSpacing: '2px',
     textAlign:'right',
     fontWeight: 600,
-    color: '#2e7d32',
+    transition: 'color 0.4s ease'
   },
   wrapperAnimado: {
     animation: 'fadeInUp 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards',
@@ -283,7 +285,7 @@ const estilos: Record<string, SxProps<Theme>> = {
     paddingLeft:"5%",
     textAlign:'right',
   },
-    tituloIncluye: {
+  tituloIncluye: {
     fontWeight: 600,
     color: '#1a1a1a',
     marginTop: '20px',
@@ -295,17 +297,17 @@ const estilos: Record<string, SxProps<Theme>> = {
     padding: 0,
     display: 'flex',
     flexDirection: 'column',
-    gap: '6px' // Espaciado vertical entre cada punto
+    gap: '6px'
   },
   itemLista: {
     padding: 0,
-    alignItems: 'flex-start' // Alinea la viñeta arriba si el texto ocupa 2 líneas
+    alignItems: 'flex-start'
   },
   vinetaVerde: {
-    color: 'black',
     fontWeight: 'bold',
     marginLeft: '12px',
-    marginTop:"3px"
+    marginTop:"3px",
+    transition: 'color 0.4s ease'
   },
   textoItem: {
     fontSize: '1rem',
@@ -327,7 +329,6 @@ const estilos: Record<string, SxProps<Theme>> = {
     width: '100%',
     height: '600px',
     zIndex: 5,
-    
     '& .swiper-pagination-vertical.swiper-pagination-bullets': {
       right: '20px',
       '& .swiper-pagination-bullet': {
@@ -341,18 +342,18 @@ const estilos: Record<string, SxProps<Theme>> = {
       '& .swiper-pagination-bullet-active': {
         opacity: 1,
         transform: 'scale(1.4)',
-        backgroundColor: '#2ecc71'
+        backgroundColor: '#333333'
       }
     }
   },
   ruedaGrandeGirable: {
     position: 'absolute',
-    right: '-400px', // Eje central anclado al lateral derecho
+    right: '-400px',
     top: '50%',
     width: '800px',
     height: '800px',
     borderRadius: '50%',
-    border: '2px dashed black', // Arco visible punteado
+    border: '2px dashed black',
     zIndex: 3,
     transition: 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)',
     pointerEvents: 'none'
@@ -371,12 +372,8 @@ const estilos: Record<string, SxProps<Theme>> = {
     gap: 1,
     cursor: 'pointer',
     pointerEvents: 'auto',
-    // La transición del transform aplica la fluidez al contragiro
     transition: 'border-color 0.4s, scale 0.6s, opacity 0.6s, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)',
-    boxShadow: '0px 10px 30px rgba(0,0,0,0.05)',
-    '&:hover': {
-      borderColor: '#2ecc71'
-    }
+    boxShadow: '0px 10px 30px rgba(0,0,0,0.05)'
   },
   contenedorIcono: {
     width: '55px',
